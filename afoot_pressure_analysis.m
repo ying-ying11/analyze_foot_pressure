@@ -2,19 +2,21 @@ clc;
 clear;
 close all;
 
-file_path_before='C:\Users\a0916\OneDrive\desktop\2022-11-15 21-12-11.csv';
+file_path_before='C:\Users\user\Desktop\afoot\2022-11-21 18-09-24.csv';
 %file_path_after='C:\Users\user\Desktop\10925218_after_1115.xlsx';
-gain=[0.0014,0.0008,0.0016,0.001,0.0011,0.0013];%left
-bias=[0.411,0.1106,0.6439,0.153,-0.0914,0.4504];
-%gain=[0.0014,0.0008,0.0016,0.001,0.0011,0.0013];%right
-%bias=[0.411,0.1106,0.6439,0.153,-0.0914,0.4504];
+%gain=[0.0013,0.0008,0.0014,0.0009,0.0012,0.0012];%right
+%bias=[0.2188,0.0589,0.3803,0.0815,-0.0487,0.2398];
+%direct_signal=[200, 100, 280.34, 103.88, -20, 203.08];
+gain=[0.0019,0.0015,0.0018,0.0022,0.0019,0.0021];%left
+bias=[-0.0284,0.0487,0.0306,-0.1587,-0.1181,-0.1096];
+direct_signal=[1000, 25.43, 41.91, -60.95, -96.86, -50.1];
 t_before=xlsread(file_path_before,'a2:a5000')/1000;
-a=((xlsread(file_path_before,'b2:b5000')*3.6/4096)+bias(1))/gain(1);
-a1=((xlsread(file_path_before,'c2:c5000')*3.6/4096)+bias(2))/gain(2);
-a2=((xlsread(file_path_before,'d2:d5000')*3.6/4096)+bias(3))/gain(3);
-a3=((xlsread(file_path_before,'e2:e5000')*3.6/4096)+bias(4))/gain(4);
-a4=((xlsread(file_path_before,'f2:f5000')*3.6/4096)+bias(5))/gain(5);
-a5=((xlsread(file_path_before,'g2:g5000')*3.6/4096)+bias(6))/gain(6);
+a=(((xlsread(file_path_before,'b2:b5000')*3.6/4096)+bias(1))/gain(1))-direct_signal(1);
+a1=(((xlsread(file_path_before,'c2:c5000')*3.6/4096)+bias(2))/gain(2))-direct_signal(2);
+a2=(((xlsread(file_path_before,'d2:d5000')*3.6/4096)+bias(3))/gain(3))-direct_signal(3);
+a3=(((xlsread(file_path_before,'e2:e5000')*3.6/4096)+bias(4))/gain(4))-direct_signal(4);
+a4=(((xlsread(file_path_before,'f2:f5000')*3.6/4096)+bias(5))/gain(5))-direct_signal(5);
+a5=(((xlsread(file_path_before,'g2:g5000')*3.6/4096)+bias(6))/gain(6))-direct_signal(6);
 
 %t_after=xlsread('C:\Users\user\Desktop\foot analysis\Coretec\drive-download-20221116T062720Z-001\10925218_after_1115.xlsx','工作表1','a4:a2685');
 %b=xlsread('C:\Users\user\Desktop\foot analysis\Coretec\drive-download-20221116T062720Z-001\10925218_after_1115.xlsx','工作表1','b4:b2685');
@@ -25,12 +27,12 @@ pa3_before=(a3*0.001*9.80556)/(0.0153*0.1);
 pa4_before=(a4*0.001*9.80556)/(0.0153*0.3);
 pa5_before=(a5*0.001*9.80556)/(0.0153*0.3);
 %pa_after=(b*0.001*9.80556)/(0.0153*0.05);
-[maxv_before,max_before]=findpeaks(pa_before,'minpeakheight',7700,'minpeakdistance',100);
-[maxv1_before,max1_before]=findpeaks(pa1_before,'minpeakheight',1010,'minpeakdistance',100);
-[maxv2_before,max2_before]=findpeaks(pa2_before,'minpeakheight',3500,'minpeakdistance',100);
-[maxv3_before,max3_before]=findpeaks(pa3_before,'minpeakheight',2500,'minpeakdistance',100);
-[maxv4_before,max4_before]=findpeaks(pa4_before,'minpeakheight',50,'minpeakdistance',100);
-[maxv5_before,max5_before]=findpeaks(pa5_before,'minpeakheight',1000,'minpeakdistance',100);
+[maxv_before,max_before]=findpeaks(pa_before,'minpeakheight',1000,'minpeakdistance',100);
+[maxv1_before,max1_before]=findpeaks(pa1_before,'minpeakheight',1000,'minpeakdistance',100);
+[maxv2_before,max2_before]=findpeaks(pa2_before,'minpeakheight',1000,'minpeakdistance',100);
+[maxv3_before,max3_before]=findpeaks(pa3_before,'minpeakheight',2000,'minpeakdistance',100);
+[maxv4_before,max4_before]=findpeaks(pa4_before,'minpeakheight',500,'minpeakdistance',100);
+[maxv5_before,max5_before]=findpeaks(pa5_before,'minpeakheight',500,'minpeakdistance',100);
 %[maxv_after,max_after]=findpeaks(pa_after,'minpeakheight',950);
 subplot(321);
 plot(t_before,pa_before);hold on;
