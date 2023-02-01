@@ -2,21 +2,21 @@ clc;
 clear;
 close all;
 
-file_path_before='C:\Users\user\Desktop\afoot\2022-11-21 18-09-24.csv';
+file_path_before='C:\Users\user\Desktop\0201 GA\2023-02-01 14-55-55.csv';
 %file_path_after='C:\Users\user\Desktop\10925218_after_1115.xlsx';
-%gain=[0.0013,0.0008,0.0014,0.0009,0.0012,0.0012];%right
-%bias=[0.2188,0.0589,0.3803,0.0815,-0.0487,0.2398];
-%direct_signal=[200, 100, 280.34, 103.88, -20, 203.08];
-gain=[0.0019,0.0015,0.0018,0.0022,0.0019,0.0021];%left
-bias=[-0.0284,0.0487,0.0306,-0.1587,-0.1181,-0.1096];
-direct_signal=[1000, 25.43, 41.91, -60.95, -96.86, -50.1];
+gain=[0.0014, 0.0016, 0.0013, 0.0014, 0.0013,0.0014];%right
+bias=[-0.7424, -0.8187, -0.9155, -0.8699, -1.0935, -0.1294];
+direct_signal=[540, 555, 700, 620, 840, 65];
+%gain=[0.0015, 0.0015, 0.0017, 0.0014, 0.0004, 0.0014];%left
+%bias=[-0.2495, -0.8509, -0.3182, -1.1683, 0.0063, -0.516];
+%direct_signal=[160, 560, 180, 830, 0, 270];
 t_before=xlsread(file_path_before,'a2:a5000')/1000;
-a=(((xlsread(file_path_before,'b2:b5000')*3.6/4096)+bias(1))/gain(1))-direct_signal(1);
-a1=(((xlsread(file_path_before,'c2:c5000')*3.6/4096)+bias(2))/gain(2))-direct_signal(2);
-a2=(((xlsread(file_path_before,'d2:d5000')*3.6/4096)+bias(3))/gain(3))-direct_signal(3);
-a3=(((xlsread(file_path_before,'e2:e5000')*3.6/4096)+bias(4))/gain(4))-direct_signal(4);
-a4=(((xlsread(file_path_before,'f2:f5000')*3.6/4096)+bias(5))/gain(5))-direct_signal(5);
-a5=(((xlsread(file_path_before,'g2:g5000')*3.6/4096)+bias(6))/gain(6))-direct_signal(6);
+a=((((xlsread(file_path_before,'b2:b5000')+direct_signal(1))*3.6/4096)+bias(1))/gain(1));
+a1=((((xlsread(file_path_before,'c2:c5000')+direct_signal(2))*3.6/4096)+bias(2))/gain(2));
+a2=((((xlsread(file_path_before,'d2:d5000')+direct_signal(3))*3.6/4096)+bias(3))/gain(3));
+a3=((((xlsread(file_path_before,'e2:e5000')+direct_signal(4))*3.6/4096)+bias(4))/gain(4));
+a4=((((xlsread(file_path_before,'f2:f5000')+direct_signal(5))*3.6/4096)+bias(5))/gain(5));
+a5=((((xlsread(file_path_before,'g2:g5000')+direct_signal(6))*3.6/4096)+bias(6))/gain(6));
 
 %t_after=xlsread('C:\Users\user\Desktop\foot analysis\Coretec\drive-download-20221116T062720Z-001\10925218_after_1115.xlsx','工作表1','a4:a2685');
 %b=xlsread('C:\Users\user\Desktop\foot analysis\Coretec\drive-download-20221116T062720Z-001\10925218_after_1115.xlsx','工作表1','b4:b2685');
