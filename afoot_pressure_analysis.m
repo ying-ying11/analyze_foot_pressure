@@ -2,14 +2,22 @@ clc;
 clear;
 close all;
 
-file_path_before='C:\Users\user\Desktop\0201 GA\2023-02-01 14-55-55.csv';
+file_path_before='C:\Users\user\Desktop\030607\2023-03-06 11-52-53.csv';
 %file_path_after='C:\Users\user\Desktop\10925218_after_1115.xlsx';
-gain=[0.0014, 0.0016, 0.0013, 0.0014, 0.0013,0.0014];%right
-bias=[-0.7424, -0.8187, -0.9155, -0.8699, -1.0935, -0.1294];
+gain=[0.0014, 0.0016, 0.0013, 0.0014, 0.0013,0.0014];% male right
+bias=[-0.7424, -0.8178, -0.9155, -0.8699, -1.0935, -0.1294];
 direct_signal=[540, 555, 700, 620, 840, 65];
-%gain=[0.0015, 0.0015, 0.0017, 0.0014, 0.0004, 0.0014];%left
-%bias=[-0.2495, -0.8509, -0.3182, -1.1683, 0.0063, -0.516];
+%gain=[0.0015, 0.0015, 0.0017, 0.0014, 0.0004, 0.0014];% male left
+%bias=[-0.2495, -0.8509, -0.3182, -1.1683, -0.0063, -0.516];
 %direct_signal=[160, 560, 180, 830, 0, 270];
+
+%gain=[0.0004, 0.0003, 0.0004, 0.0004, 0.0004, 0.0002];% female right
+%bias=[-0.2495, -0.8509, -0.3182, -1.1683, -0.0063, -0.516];
+%direct_signal=[0.0214, 0.0206, 0.0523, 0.0085, 0.0171, 0.0351];
+%gain=[0.0004, 0.0003, 0.0003, 0.0003, 0.0003,0.0004];% female left
+%bias=[0.0578, 0.0367, 0.0538, 0.053, 0.0634, -0.0621];
+%direct_signal=[-300, -250, -800, 0, -50, -300];
+
 t_before=xlsread(file_path_before,'a2:a5000')/1000;
 a=((((xlsread(file_path_before,'b2:b5000')+direct_signal(1))*3.6/4096)+bias(1))/gain(1));
 a1=((((xlsread(file_path_before,'c2:c5000')+direct_signal(2))*3.6/4096)+bias(2))/gain(2));
@@ -31,7 +39,7 @@ pa5_before=(a5*0.001*9.80556)/(0.0153*0.3);
 [maxv1_before,max1_before]=findpeaks(pa1_before,'minpeakheight',1000,'minpeakdistance',100);
 [maxv2_before,max2_before]=findpeaks(pa2_before,'minpeakheight',1000,'minpeakdistance',100);
 [maxv3_before,max3_before]=findpeaks(pa3_before,'minpeakheight',2000,'minpeakdistance',100);
-[maxv4_before,max4_before]=findpeaks(pa4_before,'minpeakheight',500,'minpeakdistance',100);
+[maxv4_before,max4_before]=findpeaks(pa4_before,'minpeakheight',300,'minpeakdistance',100);
 [maxv5_before,max5_before]=findpeaks(pa5_before,'minpeakheight',500,'minpeakdistance',100);
 %[maxv_after,max_after]=findpeaks(pa_after,'minpeakheight',950);
 subplot(321);
